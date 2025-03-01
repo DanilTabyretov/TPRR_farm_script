@@ -1,0 +1,79 @@
+task.wait(1.5)
+
+local plr = game:GetService("Players").LocalPlayer
+
+local char = plr.Character.HumanoidRootPart
+
+local Gui = Instance.new("ScreenGui", plr.PlayerGui)
+Gui.Name = "TPRR Script!"
+Gui.IgnoreGuiInset = true
+
+local Frame = Instance.new("Frame", Gui)
+Frame.Size = UDim2.new(0.208, 0,0.079, 0)
+Frame.Position = UDim2.new(0.413, 0,0.149, 0)
+Frame.BorderColor3 = Color3.new(0,0,0)
+Frame.BorderSizePixel = 2
+Frame.BackgroundColor3 = Color3.new(0.9,0.9,0.9)
+
+local StartButton = Instance.new("TextButton", Frame)
+StartButton.Size = UDim2.new(0.888, 0,0.769, 0)
+StartButton.Position = UDim2.new(0.056, 0,0.103, 0)
+StartButton.BackgroundColor3 = Color3.new(0.333333, 0.666667, 0)
+StartButton.BorderColor3 = Color3.new(0,0,0)
+StartButton.BorderSizePixel = 2
+StartButton.TextScaled = true
+StartButton.TextColor3 = Color3.new(1,1,1)
+StartButton.TextStrokeTransparency = 0
+StartButton.Text = "Включить."
+
+local SelectButton = Instance.new("TextButton", Frame)
+SelectButton.Size = UDim2.new(0.762, 0,0.615, 0)
+SelectButton.Position = UDim2.new(1.119, 0,0.154, 0)
+SelectButton.BackgroundColor3 = Color3.new(0.333333, 0, 0.498039)
+SelectButton.BorderColor3 = Color3.new(0,0,0)
+SelectButton.BorderSizePixel = 2
+SelectButton.TextScaled = true
+SelectButton.TextColor3 = Color3.new(1,1,1)
+SelectButton.TextStrokeTransparency = 0
+SelectButton.Text = "Кассеты"
+
+
+local Active = false
+
+local Who = "Tape"
+
+StartButton.MouseButton1Click:Connect(function()
+	if Active == false then
+		Active = true
+		StartButton.Text = "Выключить."
+		StartButton.BackgroundColor3 = Color3.new(0.796078, 0, 0)
+	else
+		Active = false
+		StartButton.Text = "Включить."
+		StartButton.BackgroundColor3 = Color3.new(0.333333, 0.666667, 0)
+	end
+end)
+
+SelectButton.MouseButton1Click:Connect(function()
+	if Who == "Tape" then
+		Who = "Egg"
+		SelectButton.Text = "Яйца"
+		SelectButton.BackgroundColor3 = Color3.new(1, 0.666667, 1)
+	elseif Who == "Egg" then
+		Who = "Tape"
+		SelectButton.Text = "Кассеты"
+		SelectButton.BackgroundColor3 = Color3.new(0.333333, 0, 0.498039)
+	end
+end)
+
+
+while task.wait() do
+	if Active == true then
+		for i,p in pairs(game:GetService("Workspace"):GetChildren()) do
+			if p.Name == Who then
+				p.CanCollide = false
+				p.CFrame = char.CFrame
+			end
+		end
+	end
+end
