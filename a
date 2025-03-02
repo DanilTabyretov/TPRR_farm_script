@@ -63,6 +63,10 @@ SelectButton.MouseButton1Click:Connect(function()
 		SelectButton.Text = "Подарки"
 		SelectButton.BackgroundColor3 = Color3.new(1, 0, 0)
         elseif Who == "Gift" then
+                Who = "Candy"
+		SelectButton.Text = "Конфеты"
+		SelectButton.BackgroundColor3 = Color3.new(0.7, 0.7, 0)
+        elseif Who == "Candy" then
                 Who = "Tape"
 		SelectButton.Text = "Кассеты"
 		SelectButton.BackgroundColor3 = Color3.new(0.333333, 0, 0.498039)
